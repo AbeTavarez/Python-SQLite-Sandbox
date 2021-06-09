@@ -1,3 +1,7 @@
+######################################
+# Sandbox for basic setup and commands
+######################################
+
 from os import close
 import sqlite3
 from sqlite3.dbapi2 import connect
