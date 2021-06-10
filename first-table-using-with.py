@@ -13,7 +13,7 @@ insert_values = """
 INSERT INTO Users VALUES(
     'eren',
     'eyaeger@paths.com',
-    01
+    11
 );"""
 
 # Execute
