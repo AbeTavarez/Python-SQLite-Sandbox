@@ -14,7 +14,7 @@ CREATE TABLE People(
     LastName TEXT,
     Age INT
 );
-INSERTE INTO People VALUES(
+INSERT INTO People VALUES(
     'Eren',
     'Yaeger',
     '33'
