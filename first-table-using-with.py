@@ -8,6 +8,7 @@ CREATE TABLE Users(
     departmentID INT
 );"""
 
+# Values
 insert_values = """
 INSERT INTO Users VALUES(
     'eren',
@@ -15,3 +16,10 @@ INSERT INTO Users VALUES(
     01
 );"""
 
+# Execute
+with sqlite3.connect("users_database.db") as connection:
+    cursor = connection.cursor() # creates cursor
+
+    # Execute SQL Commands
+    cursor.execute(create_table)
+    cursor.execute(insert_values)
