@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS User;
 CREATE TABLE User (
     FirstName TEXT,
     LastName TEXT,
-    Email TEXT
+    Age INT
 );"""
 
 
@@ -24,15 +24,15 @@ CREATE TABLE User (
 def get_user_data():
     firstname = input('Enter first name: ')
     lastname = input('Enter last name: ')
-    email = input('Enter email: ')
-    return (firstname, lastname, email)
+    age = int(input('Enter age: '))
+    return (firstname, lastname, age)
 
 
 
 # Create query from user-data
 def create_query(data):
     query = (
-        "INSERT INTO User Values"
+        "INSERT INTO User Values "
         f"('{data[0]}', '{data[1]}', {data[2]});"
     )
     return query
@@ -43,6 +43,7 @@ user_data = get_user_data() # gets data from user
 print(user_data)
 insert_data = create_query(user_data) # creates the data for insertion
 print(insert_data)
+print('here---> ', type(user_data[2]))
 
 
 # Execute database
@@ -50,8 +51,6 @@ with sqlite3.connect(db_name) as connection:
     cursor = connection.cursor()
     cursor.executescript(sql)
 
-with sqlite3.connect(db_name) as connection:
-    cursor = connection.cursor()
     cursor.execute(insert_data)
 
 q1 = "SELECT * FROM User;"
