@@ -7,4 +7,10 @@ def get_user_data():
     age = input('Enter age: ')
     email =  input('Enter email: ')
     password = input('Enter password: ')
+    
     return (username, name, age, email, password)
+ 
+
+
+
+# create insert into query
