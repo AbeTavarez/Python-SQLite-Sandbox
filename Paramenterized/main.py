@@ -2,31 +2,32 @@
 
 
 import sqlite3
+import subprocess
 from helper_funcs import get_user_data
+from sql_funcs import insert_player_data, fetch_all_players, confirm_admin
 
-data = get_user_data()
+cmd = input("""
+==================================
+Welcome, why are you still here?  :|
+1) To insert new record enter (n)
+2) To update a record enter (u)
+3) fetch all Players (p)
+==================================
+""")
 
+try:
+    if cmd == 'n':
+        data = get_user_data()
+        insert_player_data(data)
+    elif cmd == 'u':
+        pass
+    elif cmd == 'p':
+        fetch_all_players()
+    elif cmd == 'admin':
+        subprocess.call(confirm_admin())
+        
+except:
+    print('What are you doing? -_-')
 
-player_table_schema = """
-DROP TABLE IF EXISTS Player;
-CREATE TABLE Player(
-    username TEXT,
-    name TEXT,
-    age INT,
-    email TEXT,
-    password TEXT
-);"""
-
-
-#
-with sqlite3.connect('player_database.db') as connection:
-    cursor = connection.cursor()
-    # create Player table
-    cursor.executescript(player_table_schema)
-    # populates Player table
-    cursor.execute("INSERT INTO Player VALUES(?,?,?,?,?);", data)
-    # query all data from the Player table
-    cursor.execute('SELECT * FROM Player')
-    rows = cursor.fetchall()
-    print(rows)
-
+else:
+    print('Stop playing! (-_-)')
